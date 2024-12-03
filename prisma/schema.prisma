@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Use your database provider
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                 String               @id @default(uuid())
+  clerkId            String               @unique
+  name               String
+  email              String               @unique
+  phone              String?              @unique
+  country            String?
+  address            String?
+  profileImage       String?
+  documents          DocumentMetadata[]   @relation("UserDocuments") 
+  bookings           BookingRecord[]   @relation("UserBookings") 
+
+  systemConfigurations SystemConfiguration[] @relation("UserSystemConfiguration")
+}
+
+model DocumentMetadata {
+  id               String               @id @default(uuid())
+  title            String
+  author           User                 @relation("UserDocuments", fields: [authorId], references: [id])
+  authorId         String
+  lastModified     DateTime  @updatedAt
+  version          Int
+  fileId           String
+
+  BookingRecord BookingRecord @relation("DocumentBookings", fields: [bookingId], references: [id])
+bookingId String
+
+
+}
+
+
+
+model BookingRecord {
+  id               String               @id @default(uuid())
+  title            String               // Title of the booking
+  description      String?              // Optional description of the booking
+  user             User                 @relation("UserBookings", fields: [userId], references: [id]) // Linked to the User who made the booking
+  userId           String
+  relatedDocuments  DocumentMetadata[] @relation("DocumentBookings")
+  bookingDate      String             // The date/time of the booking
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+
+
+}
+model SystemConfiguration {
+  id         String   @id @default(uuid())
+  key        String    // The name of the setting (e.g., "maxFileUploadSize")
+  value      String   // The value of the setting (e.g., "20MB")
+  user User @relation("UserSystemConfiguration", fields: [userId],references: [id]) 
+  userId      String 
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  description String? // Optional description for clarity
+}
