@@ -177,11 +177,11 @@ This API provides endpoints to manage document metadata, users, bookings, and sy
 
 ```
 
-{{baseUrl}} = http://localhost:<PORT>/api/v1
+{{baseUrl}} = http://localhost:4001/api/v1
 
 ```
 
-Replace `PORT` with backend port number.
+
 
 ---
 
