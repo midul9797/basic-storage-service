@@ -38,10 +38,11 @@ yarn install
 npm start
 # or
 yarn start
-
-# Project Structure
+```
 
 ---
+
+# Project Structure
 
 ## Root Files
 
@@ -178,7 +179,7 @@ This API provides endpoints to manage document metadata, users, bookings, and sy
 
 {{baseUrl}} = http://localhost:<PORT>/api/v1
 
-````
+```
 
 Replace `PORT` with backend port number.
 
@@ -248,7 +249,7 @@ Replace `PORT` with backend port number.
     }
   ]
 }
-````
+```
 
 ---
 
