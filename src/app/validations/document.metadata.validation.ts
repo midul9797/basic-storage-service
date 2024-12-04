@@ -12,8 +12,7 @@ const create = z.object({
 // Validation schema for updating an existing document metadata record
 const update = z.object({
   body: z.object({
-    title: z.string(), // Document title
-    version: z.number(), // Document version number
+    title: z.string(), // Document version number
   }),
 });
 

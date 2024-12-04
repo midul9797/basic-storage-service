@@ -1,0 +1,9 @@
+PORT=4001
+REDIS_URL=redis://localhost:6379
+REDIS_EXPIRE=84600
+# Connect to Supabase via connection pooling with Supavisor.
+DATABASE_URL="postgresql://postgres.mlymcrsetfirtmdpixcf:midul@9142021@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+
+# Direct connection to the database. Used for migrations.
+DIRECT_URL="postgresql://postgres.mlymcrsetfirtmdpixcf:midul@9142021@aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres"
+        
